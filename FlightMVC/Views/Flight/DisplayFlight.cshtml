@@ -1,0 +1,88 @@
+﻿@model IEnumerable<OnlineFlightBooking.Models.FlightModel>
+@{
+    ViewBag.Title = "Displayflight";
+}
+
+<h2>AdminPage</h2>
+@*<h3>@TempData["message"]</h3>*@
+<a>
+    @Html.ActionLink("AddFlight", "AddFlight", "Flight")
+</a>
+<style>
+    table, td, th {
+        border: 1px solid black;
+        text-align: left;
+        font-family: Arial;
+    }
+
+    th {
+        background-color: cadetblue;
+        color: white;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    tr:hover {
+        background-color: #e6eeff;
+    }
+</style>
+<table>
+    <tr>
+        <th>Flight Id</th>
+        <th>Flight Name</th>
+        <th>FromLocation</th>
+        <th>ToLocation</th>
+        <th>ArrivalTime</th>
+        <th>Duration</th>
+        <th>TotalSeat</th>
+        <th>Class</th>
+        <th>Modification</th>
+    </tr>
+    @foreach (OnlineFlightBooking.Models.FlightModel flight in Model)
+    {
+        <tr style="text-align:center">
+            <td>@flight.FlightId</td>
+            <td>@flight.FlightName</td>
+            <td>@flight.FromLocation</td>
+            <td>@flight.ToLocation</td>
+            <td>@flight.ArrivalTime</td>
+            <td>@flight.Duration.ToShortTimeString()</td>
+            <td>@flight.TotalSeat</td>
+            <td>
+                <table>
+                    <tr>
+                        <th>class</th>
+                        <th>No of Seats</th>
+                    </tr>
+                    @foreach (OnilneFlightBooking.Entity.FlightTravelClass flightTravelClass in (List<OnilneFlightBooking.Entity.FlightTravelClass>)TempData["FlightTravelClass"])
+                    {
+                        foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
+                        {
+                            <tr>
+                                @if(flightTravelClass.ClassId==travelClass.ClassId && flight.FlightId==flightTravelClass.FlightId)
+                                {
+                                    <td>
+                                        @travelClass.ClassName
+                                    </td>
+                                    <td>
+                                        @flightTravelClass.SeatCount
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                </table>
+                </td>
+                <td>@Html.ActionLink("Edit", "EditFlight", new { id = flight.FlightId }) | @Html.ActionLink("Delete", "DeleteFlight", new { id = flight.FlightId })</td>
+            </tr>
+        }
+</table>
+

@@ -1,0 +1,70 @@
+﻿@model OnlineFlightBooking.Models.FlightModel
+
+@{
+    ViewBag.Title = "EditFlight";
+}
+
+<h2>EditFlight</h2>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+@using (Html.BeginForm("EditFlight", "Flight"))
+{
+    @Html.HiddenFor(model => model.FlightId)
+<table>
+    <tr style="border-spacing:10px">
+        <td>@Html.Label("Flight Id")</td>
+        <td>
+            @Html.ValueFor(model => model.FlightId)
+            @Html.ValidationMessageFor(Model => Model.FlightId, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("FlightName")</td>
+        <td>
+            @Html.EditorFor(model => model.FlightName, new { @MaxLength = 25 })
+            @Html.ValidationMessageFor(Model => Model.FlightName, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("From Location")</td>
+        <td>
+            @Html.EditorFor(model => model.FromLocation, new { @MaxLength = 10 })
+            @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("ToLocation")</td>
+        <td>
+            @Html.EditorFor(model => model.ToLocation)
+            @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("ArrivalTime")</td>
+        <td>
+            @Html.EditorFor(model => model.ArrivalTime)
+            @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Duration")</td>
+        <td>
+            @Html.EditorFor(model => model.Duration)
+            @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("TotalSeat")</td>
+        <td>
+            @Html.EditorFor(model => model.TotalSeat, new { @MaxLength = 50 })
+            @Html.ValidationMessageFor(Model => Model.TotalSeat, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Update" class="buttonstyle"/>
+        </td>
+    </tr>
+</table>
+    @Html.ActionLink("Go back to DisplayFlight", "DisplayFlight", "Flight")
+}
+

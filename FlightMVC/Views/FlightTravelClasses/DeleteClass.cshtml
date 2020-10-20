@@ -1,0 +1,60 @@
+﻿@model OnlineFlightBooking.Models.FlightTravelClassModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Flight Delete Conformation!!</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+@using (Html.BeginForm("DeleteClass", "FlightTravelClasses"))
+{
+    @Html.HiddenFor(Model => Model.FlightTravelClassId)
+    <div>
+        <h4>FlightTravelClass</h4>
+        <table>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.FlightId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.FlightId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.ClassId)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ClassId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.SeatCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.SeatCount)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.SeatCost)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.SeatCost)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Delete" class="buttonstyle"/> 
+                </td>
+                <td>
+                    @Html.ActionLink("Back to DisplayFlight", "DisplayFlight", "Flight")
+                </td>
+            </tr>
+        </table>
+    </div>
+}

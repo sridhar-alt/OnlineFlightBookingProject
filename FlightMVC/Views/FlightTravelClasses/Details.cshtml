@@ -1,0 +1,49 @@
+﻿@model OnilneFlightBooking.Entity.FlightTravelClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FlightTravelClass</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Flight.FlightName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Flight.FlightName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelClass.ClassName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelClass.ClassName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatCost)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FlightTravelClassId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

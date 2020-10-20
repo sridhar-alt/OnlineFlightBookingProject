@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OnilneFlightBooking.Entity.Flight>
+
+@*@{
+    ViewBag.Title = "UserDisplay";
+}*@
+
+@if (TempData["message"] != null)
+{
+    @Html.Label((string)TempData["message"])
+}
+<h2>UserDisplay</h2>
+
+<table cellspacing="0" border="1">
+    <tr>
+        <th>Flight Id</th>
+        <th>Flight Name</th>
+        <th>FromLocation</th>
+        <th>ToLocation</th>
+        <th>ArrivalTime</th>
+        <th>Duration</th>
+        <th>TotalSeat</th>
+        <th>Details</th>
+    </tr>
+    @foreach (OnilneFlightBooking.Entity.Flight flight in Model)
+    {
+        <tr style="text-align:center">
+            <td>@flight.FlightId</td>
+            <td>@flight.FlightName</td>
+            <td>@flight.FromLocation</td>
+            <td>@flight.ToLocation</td>
+            <td>@flight.ArrivalTime</td>
+            <td>@flight.Duration.ToShortTimeString()</td>
+            <td>@flight.TotalSeat</td>
+        </tr>
+    }
+</table>

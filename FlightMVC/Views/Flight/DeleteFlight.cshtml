@@ -1,0 +1,49 @@
+﻿@model OnlineFlightBooking.Models.FlightModel
+
+@{
+    ViewBag.Title = "DeleteFlight";
+}
+
+<h2>DeleteFlight</h2>
+<h3>Are you sure want to delete this?</h3>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+@using (Html.BeginForm("DeleteFlight", "Flight"))
+{
+    @Html.HiddenFor(model => model.FlightId)
+    <table border="1" cellspacing="0">
+        <tr style="border-spacing:10px">
+            <td>@Html.LabelFor(model => model.FlightId)</td>
+            <td>@Html.ValueFor(model => model.FlightId)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.FlightName)</td>
+            <td>@Html.ValueFor(model => model.FlightName)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.FromLocation)</td>
+            <td>@Html.ValueFor(model => model.FromLocation)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ToLocation)</td>
+            <td>@Html.ValueFor(model => model.ToLocation)</td>
+        </tr>
+        <tr> 
+            <td>@Html.LabelFor(model => model.ArrivalTime)</td>
+            <td>@Html.ValueFor(model => model.ArrivalTime)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Duration)</td>
+            <td>@Html.ValueFor(model => model.Duration)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.TotalSeat)</td>
+            <td>@Html.ValueFor(model => model.TotalSeat)</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Delete" class="buttonstyle"/>
+            </td>
+        </tr>
+    </table>
+    @Html.ActionLink("Go back to DisplayFlight", "DisplayFlight", "Flight")
+}

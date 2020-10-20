@@ -1,0 +1,40 @@
+﻿@model OnlineFlightBooking.Models.SignInModel
+
+@{
+    ViewBag.Title = "SignIn";
+}
+
+
+<h2>SignIn</h2>
+
+<h4>@ViewBag.message</h4>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+@using (Html.BeginForm("SignIn", "User", FormMethod.Post))
+{
+    <table class="tablestyle">
+        <tr>
+            <td>@Html.LabelFor(model => model.Mobile)</td>
+            <td>
+                @Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })
+                @Html.ValidationMessageFor(Model => Model.Mobile, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Password)</td>
+            <td>
+                @Html.PasswordFor(model => model.Password)
+                @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type='submit' value='Login' class="buttonstyle"/>
+            </td>
+            <td>
+                <input type='button' value='Register' class="buttonstyle"/>
+            </td>
+        </tr>
+    </table>
+    
+}
+

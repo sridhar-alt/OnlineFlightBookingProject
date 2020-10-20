@@ -1,0 +1,76 @@
+﻿h1{
+    text-align:center;
+    background-color:antiquewhite;
+    text-decoration-style:solid;
+    padding:10px;
+    color:black;
+}
+.menu {
+    /*text-align: center;
+    padding: 20px;
+    text-decoration: none;*/
+    overflow:hidden;
+    background-color:cadetblue;
+}
+    .menu .link {
+        float: left;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-family:Arial;
+        font-size: 20px;
+    }
+.menu .link:hover {
+    background-color: whitesmoke;
+    color:cadetblue;
+}
+
+table, td, th {
+    text-align: left;
+    font-size:large;
+}
+table {
+    margin-left: auto;
+    margin-right:auto;
+    text-align: left;
+}
+th, td {
+    padding: 15px;
+}
+
+/*h3{
+    color:lightgreen;
+}
+h4{
+    color:red;
+}*/
+.required {
+    display:inline;
+    color: red;
+}
+.heading{
+    font-family:Arial;
+    color:black;
+    font-size:35px;
+    text-align:center;
+}
+.buttonstyle {
+    border: none;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color:cadetblue;
+}
+
+.tablestyle {
+    font-family: Calibri;
+    color: black;
+    box-sizing: border-box;
+    background-color: white;
+}

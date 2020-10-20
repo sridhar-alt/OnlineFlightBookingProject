@@ -1,0 +1,63 @@
+﻿@model OnlineFlightBooking.Models.FlightTravelClassModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h4>FlightTravelClass</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.FlightTravelClassId)
+    @Html.HiddenFor(model => model.FlightId)
+    @Html.HiddenFor(model => model.ClassId)
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.FlightId, "Flight_Id")
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.FlightId, "Flight_Id")
+                @Html.ValidationMessageFor(model => model.FlightId, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.ClassId)
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.ClassId,ViewBag.ClassId as SelectList)
+                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.SeatCount)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.SeatCount)
+                @Html.ValidationMessageFor(model => model.SeatCount, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.SeatCost)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.SeatCost)
+                @Html.ValidationMessageFor(model => model.SeatCost, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Update" class="buttonstyle" />
+            </td>
+        </tr>
+    </table>
+}
+<div>
+    @Html.ActionLink("Back to List", "DisplayClass")
+</div>

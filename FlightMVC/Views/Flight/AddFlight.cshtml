@@ -1,0 +1,62 @@
+﻿@model OnlineFlightBooking.Models.FlightModel
+
+@{
+    ViewBag.Title = "AddFlight";
+}
+
+<h2>AddFlight</h2>
+
+@using (Html.BeginForm("AddFlight", "Flight", FormMethod.Post))
+{
+    <table>
+        <tr style="border-spacing:10px">
+            <td>@Html.Label("FlightName")</td>
+            <td>
+                @Html.TextBoxFor(model => model.FlightName, new { @MaxLength = 25 })
+                @Html.ValidationMessageFor(Model => Model.FlightName, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("From Location")</td>
+            <td>
+                @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
+                @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("ToLocation")</td>
+            <td>
+                @Html.TextBoxFor(model => model.ToLocation)
+                @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("ArrivalTime")</td>
+            <td>
+                @Html.TextBoxFor(model => model.ArrivalTime,new {@type="datetime-local"})
+                @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Duration")</td>
+            <td>
+                @Html.TextBoxFor(model => model.Duration,new { @type="time"})
+                @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("TotalSeat")</td>
+            <td>
+                @Html.TextBoxFor(model => model.TotalSeat, new { @MaxLength = 50 })
+                @Html.ValidationMessageFor(Model => Model.TotalSeat, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Register" />
+            </td>
+        </tr>
+    </table>
+    @Html.ActionLink("Go back to DisplayFlight", "DisplayFlight", "Flight")
+}
+

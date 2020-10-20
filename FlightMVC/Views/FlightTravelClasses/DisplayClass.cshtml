@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OnilneFlightBooking.Entity.FlightTravelClass>
+
+@{
+    ViewBag.Title = "DisplayClass";
+}
+
+@if(TempData["FlightId"]!=null)
+{
+    TempData.Keep("FlightId");
+}
+<h2>Display</h2>
+<p>
+    @Html.ActionLink("Create New", "CreateClass")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Flight.FlightName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TravelClass.ClassName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatCost)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Flight.FlightName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TravelClass.ClassName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatCost)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditClass", new { id = item.FlightTravelClassId }) |
+                @Html.ActionLink("Delete", "DeleteClass", new { id = item.FlightTravelClassId })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Back to flight display", "DisplayFlight", "Flight")
