@@ -10,6 +10,7 @@ using System;
 namespace OnlineFlightBooking.Controllers
 {
     [HandleError]
+    
     public class UserController : Controller
     {
         // GET: User/SignUp
@@ -18,6 +19,7 @@ namespace OnlineFlightBooking.Controllers
         {
             return View();          //Calling View for the SignUp 
         }
+
         // POST: User/SignUp
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -26,9 +28,18 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)  //condition pass when all the model state validation is true
             {
                 User user = AutoMapper.Mapper.Map<SignUpModel, User>(signUp);    //Auto Mapper model to entity
-                UserBL.RegisterUser(user);
-                TempData["message"] = "registered successfull..";
-                return RedirectToAction("SignIn");
+                bool result = UserBL.ValidateUser(user);
+                if (result)
+                {
+                    UserBL.RegisterUser(user);
+                    TempData["message"] = "registered successfull..";
+                    return RedirectToAction("SignIn");
+                }
+                else
+                {
+                    ViewBag.Message = "user already exists or Mobile no exists";
+                    return View();
+                }
             }
             return View();          //Calling View for the SignUp(when the ModelState is in valid)
         }
@@ -78,8 +89,30 @@ namespace OnlineFlightBooking.Controllers
         [HttpGet]
         public ActionResult UserDisplay()
         {
-            IEnumerable<Flight> flights = FlightBL.DisplayFlight();
-            return View(flights);           //Calling View for the User Flight Display
+            IEnumerable<Flight> flight = (IEnumerable<Flight>)TempData["Flights"];
+            if (flight != null)
+                return View(flight);           //Calling View for the User Flight Display
+            else
+                return RedirectToAction("Search","Home");
         }
+        
+        [HttpGet]
+        //[Authorize(Roles = "User")]
+        public ActionResult BookTicket(int id)
+        {
+            TempData["FlightTravelClass"] = FlightBL.DisplayClass(id);
+            TempData["TravelClass"] = FlightBL.GetTravelClass();
+            Flight flight = FlightBL.GetFlightDetails(id);
+            FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
+            TempData["FlightId"] = flight.FlightId;
+            return View(flightModel);
+        }
+        public ActionResult TicketCount(int id)
+        {
+            FlightTravelClass flightTravelClass = FlightBL.GetDetailsClass(id);
+            FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);       //Auto Mapper entity to model
+            return View(flightTravelClassModel);
+        }
+
     }
 }

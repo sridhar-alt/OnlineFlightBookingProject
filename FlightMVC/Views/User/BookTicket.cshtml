@@ -1,0 +1,115 @@
+﻿@model OnlineFlightBooking.Models.FlightModel
+
+@{
+    ViewBag.Title = "BookTicket";
+}
+
+<h2>BookTicket</h2>
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
+<style>
+    table, td, th {
+        border: 1px solid black;
+        text-align: left;
+        font-family: Arial;
+    }
+
+    th {
+        background-color: cadetblue;
+        color: white;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        text-align: left;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+
+    tr:hover {
+        background-color: #e6eeff;
+    }
+</style>
+@using (Html.BeginForm("BookTicket", "User"))
+{
+    @Html.HiddenFor(model => model.FlightId)
+<table>
+    <tr style="border-spacing:10px">
+        <td>@Html.Label("Flight Id")</td>
+        <td>
+            @Html.ValueFor(model => model.FlightId)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("FlightName")</td>
+        <td>
+            @Html.ValueFor(model => model.FlightName)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("From Location")</td>
+        <td>
+            @Html.ValueFor(model => model.FromLocation)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("ToLocation")</td>
+        <td>
+            @Html.ValueFor(model => model.ToLocation)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Date")</td>
+        <td>
+            @Html.ValueFor(model => model.Date)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("ArrivalTime")</td>
+        <td>
+            @Html.ValueFor(model => model.ArrivalTime)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("TotalSeat")</td>
+        <td>
+            @Html.ValueFor(model => model.TotalSeat)
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <th>class</th>
+        <th>No of Seats</th>
+        <th>Cost</th>
+        <th>BookTicket</th>
+    </tr>
+    @foreach (OnilneFlightBooking.Entity.FlightTravelClass flightTravelClass in (List<OnilneFlightBooking.Entity.FlightTravelClass>)TempData["FlightTravelClass"])
+    {
+        foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
+        {
+            <tr>
+                @if (flightTravelClass.ClassId == travelClass.ClassId && Model.FlightId == flightTravelClass.FlightId)
+                {
+                    <td>
+                        @travelClass.ClassName
+                    </td>
+                    <td>
+                        @flightTravelClass.SeatCount
+                    </td>
+                    <td>
+                        @flightTravelClass.SeatCost
+                    </td>
+                    <td>
+                        @Html.ActionLink("TicketCount", "TicketCount", new { id =flightTravelClass.FlightTravelClassId })
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>
+@Html.ActionLink("Go back to DisplayFlight", "UserDisplay", "user")
+}
+

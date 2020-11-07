@@ -5,9 +5,13 @@ namespace OnlineFlightBooking.BL
 {
     public class UserBL
     {
+        public static bool ValidateUser(User user)
+        {
+            return UserRepository.ValidateUser(user);
+        }
         public static void RegisterUser(User user)      
         {
-            UserRepository.RegisterUser(user);          // passes the  user details to the user repository
+             UserRepository.RegisterUser(user);          // passes the  user details to the user repository
         }
         public static string ValidateLogin(User user)       // check the user is registered or not
         {

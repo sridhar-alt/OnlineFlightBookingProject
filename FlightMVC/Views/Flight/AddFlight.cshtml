@@ -33,22 +33,15 @@
         <tr>
             <td>@Html.Label("ArrivalTime")</td>
             <td>
-                @Html.TextBoxFor(model => model.ArrivalTime,new {@type="datetime-local"})
-                @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
+                @Html.TextBoxFor(model => model.Date,new {@type="date"})
+                @Html.ValidationMessageFor(Model => Model.Date, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("Duration")</td>
             <td>
-                @Html.TextBoxFor(model => model.Duration,new { @type="time"})
-                @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.Label("TotalSeat")</td>
-            <td>
-                @Html.TextBoxFor(model => model.TotalSeat, new { @MaxLength = 50 })
-                @Html.ValidationMessageFor(Model => Model.TotalSeat, "", new { @class = "required" })
+                @Html.EditorFor(model => model.ArrivalTime,new { @type="time"})
+                @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
             </td>
         </tr>
         <tr>

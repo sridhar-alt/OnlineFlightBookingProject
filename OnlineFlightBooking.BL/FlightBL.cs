@@ -3,22 +3,6 @@ using OnlineFlightbooking.DAL;
 using System.Collections.Generic;
 namespace OnlineFlightBooking.BL
 {
-    //public interface IFlightBL
-    //{
-    //    List<Flight> FlightList();
-    //    IEnumerable<Flight> DisplayFlight();
-    //    void AddFlight(Flight flight);
-    //    IEnumerable<FlightTravelClass> DisplayClass(int flightId);
-    //    void CreateClass(FlightTravelClass create);
-    //    void EditClass(FlightTravelClass flightTravelClass);
-    //    void DeleteFlightTravelClass(FlightTravelClass deleteClass);
-    //    IEnumerable<TravelClass> GetTravelClass();
-    //    Flight GetFlightDetails(int flightId);
-    //    FlightTravelClass GetDetailsClass(int id);
-    //    void UpdateFlight(Flight flight);
-    //    void DeleteFlight(Flight flight);
-
-    //}
     public class FlightBL
     {
         public static IEnumerable<Flight> DisplayFlight()   
@@ -81,6 +65,11 @@ namespace OnlineFlightBooking.BL
         public static List<Flight> FlightList()
         {
             throw new System.NotImplementedException();
+        }
+        public static IEnumerable<Flight> SearchDisplayFlight(Flight flight)
+        {
+            IEnumerable<Flight> flightDetails = FlightRepository.SearchDisplayFlight(flight);
+            return flightDetails;                                                     //Returns the flight list from the Flight Repository
         }
     }
 }

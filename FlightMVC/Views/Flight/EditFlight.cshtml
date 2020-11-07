@@ -39,6 +39,13 @@
         </td>
     </tr>
     <tr>
+        <td>@Html.Label("Date")</td>
+        <td>
+            @Html.EditorFor(model => model.Date)
+            @Html.ValidationMessageFor(Model => Model.Date, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
         <td>@Html.Label("ArrivalTime")</td>
         <td>
             @Html.EditorFor(model => model.ArrivalTime)
@@ -46,17 +53,9 @@
         </td>
     </tr>
     <tr>
-        <td>@Html.Label("Duration")</td>
-        <td>
-            @Html.EditorFor(model => model.Duration)
-            @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
-        </td>
-    </tr>
-    <tr>
         <td>@Html.Label("TotalSeat")</td>
         <td>
-            @Html.EditorFor(model => model.TotalSeat, new { @MaxLength = 50 })
-            @Html.ValidationMessageFor(Model => Model.TotalSeat, "", new { @class = "required" })
+            @Html.ValueFor(model => model.TotalSeat)
         </td>
     </tr>
     <tr>

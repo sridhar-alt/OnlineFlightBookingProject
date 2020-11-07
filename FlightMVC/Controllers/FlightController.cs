@@ -38,6 +38,7 @@ namespace OnlineFlightBooking.Controllers
         {
             if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
+                add.TotalSeat = 0;
                 Flight flight = AutoMapper.Mapper.Map<FlightModel, Flight>(add);   //Auto Mapper model to entity
                 FlightBL.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";

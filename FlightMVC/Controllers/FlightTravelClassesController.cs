@@ -35,6 +35,7 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
                 FlightTravelClass create = AutoMapper.Mapper.Map<FlightTravelClassModel,FlightTravelClass>(flightTravelClassModel);     //Auto Mapper model to entity
+                
                 FlightBL.CreateClass(create);
                 TempData["FlightId"] = create.FlightId;
                 return RedirectToAction("DisplayFlight","Flight");
@@ -57,6 +58,8 @@ namespace OnlineFlightBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditClass(FlightTravelClassModel flightTravelClass)
         {
+            IEnumerable<TravelClass> travelClass = FlightBL.GetTravelClass();
+            ViewBag.ClassId = new SelectList(travelClass, "ClassId", "ClassName");
             if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
                 FlightTravelClass edit = AutoMapper.Mapper.Map<FlightTravelClassModel, FlightTravelClass>(flightTravelClass);     //Auto Mapper model to entity

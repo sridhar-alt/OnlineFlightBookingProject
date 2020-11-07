@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Flight.cs" />
     <Compile Include="FlightTravelClass.cs" />
+    <Compile Include="TicketBook.cs" />
     <Compile Include="TravelClass.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

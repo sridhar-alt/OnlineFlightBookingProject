@@ -1,0 +1,38 @@
+﻿@model OnlineFlightBooking.Models.SearchFlight
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.Label("From Location")</td>
+            <td>
+                @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
+                @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("ToLocation")</td>
+            <td>
+                @Html.TextBoxFor(model => model.ToLocation)
+                @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.Label("ArrivalTime")</td>
+            <td>
+                @Html.TextBoxFor(model => model.Date, new { @type = "date" })
+                @Html.ValidationMessageFor(Model => Model.Date, "", new { @class = "required" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Search" />
+            </td>
+        </tr>
+    </table>
+}

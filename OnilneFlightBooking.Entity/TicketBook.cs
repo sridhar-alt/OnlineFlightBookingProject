@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnilneFlightBooking.Entity
 {
-    public class FlightTravelClass
+    public class TicketBook
     {
         [Key]
         [Required]
-        public int FlightTravelClassId { get; set; }
+        public int TicketId { get; set; }
         [Required]
         public int FlightId { get; set; }
         public Flight Flight { get; set; }
@@ -14,9 +15,10 @@ namespace OnilneFlightBooking.Entity
         public int ClassId { get; set; }
         public TravelClass TravelClass { get; set; }
         [Required]
-        [Range(0,900)]
-        public  int SeatCount { get; set; }
-        [Required]
-        public int SeatCost { get; set; }
+        public string Mobile{ get; set; }
+        public User User { get; set; }
+        public int TotalPassenger { get; set; }
+        public int TotalCost { get; set; }
+
     }
 }

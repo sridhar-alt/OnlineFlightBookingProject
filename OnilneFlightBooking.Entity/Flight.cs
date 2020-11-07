@@ -19,10 +19,12 @@ namespace OnilneFlightBooking.Entity
         [MaxLength(25)]
         public string ToLocation { get; set; }
         [Required]
-        public DateTime ArrivalTime { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
         [Required]
-        public DateTime Duration { get; set; }
-        [Range(1,900)]
+        public DateTime ArrivalTime { get; set; }
+        [Range(0,900)]
         public int TotalSeat { get; set; }
     }
+     
 }

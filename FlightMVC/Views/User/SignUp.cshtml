@@ -3,7 +3,7 @@
     ViewBag.Title = "SignUp";
 }
 <h2>SignUp</h2>
-<h2>@ViewBag.message</h2>
+<h2 >@ViewBag.message</h2>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 
@@ -14,29 +14,29 @@
         <tr style="border-spacing:10px">
             <td>@Html.LabelFor(model => model.Name)</td>
             <td>
-                @Html.TextBoxFor(model => model.Name,new { @MaxLength = 25 })
+                @Html.TextBoxFor(model => model.Name, new { @MaxLength = 25 })
                 @Html.ValidationMessageFor(Model => Model.Name, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Mobile)</td>
             <td>
-                @Html.TextBoxFor(model => model.Mobile,new { @MaxLength = 10 })
-                @Html.ValidationMessageFor(Model => Model.Mobile, "",  new { @class = "required" })
+                @Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })
+                @Html.ValidationMessageFor(Model => Model.Mobile, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Dob)</td>
             <td>
-                @Html.TextBoxFor(model => model.Dob,new { @type="date"})
-                @Html.ValidationMessageFor(Model => Model.Dob, "",  new { @class = "required"})
+                @Html.TextBoxFor(model => model.Dob, new { @type = "date" })
+                @Html.ValidationMessageFor(Model => Model.Dob, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Mail)</td>
             <td>
                 @Html.TextBoxFor(model => model.Mail)
-                @Html.ValidationMessageFor(model => model.Mail, "",  new { @class = "required" })
+                @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "required" })
             </td>
 
         </tr>
@@ -45,35 +45,36 @@
             <td>
                 @Html.RadioButtonFor(model => model.Gender, "male")Male
                 @Html.RadioButtonFor(model => model.Gender, "female")Female
-                @Html.ValidationMessageFor(Model => Model.Gender, "",  new { @class = "required" })
+                @Html.ValidationMessageFor(Model => Model.Gender, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.UserAddress)</td>
-            <td>@Html.TextBoxFor(model => model.UserAddress,new { @MaxLength = 50 })
-                @Html.ValidationMessageFor(model=>model.UserAddress,"", new { @class = "required" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Password)</td>
             <td>
-                @Html.PasswordFor(model => model.Password,new { @MinLength = 8,@MaxLength = 12 })
-                @Html.ValidationMessageFor(Model => Model.Password, "",  new { @class = "required" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.ConfirmPassword)</td>
-            <td>
-                @Html.PasswordFor(model => model.ConfirmPassword,new { @MinLength = 8,@MaxLength = 12 })
-                @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "required" })
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Register" class="buttonstyle"/>
-            </td>
-        </tr>
-    </table>
+                @Html.TextBoxFor(model => model.UserAddress, new { @MaxLength = 50 })
+            @Html.ValidationMessageFor(model => model.UserAddress, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.Password)</td>
+        <td>
+            @Html.PasswordFor(model => model.Password, new { @MinLength = 8, @MaxLength = 12 })
+            @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(model => model.ConfirmPassword)</td>
+        <td>
+            @Html.PasswordFor(model => model.ConfirmPassword, new { @MinLength = 8, @MaxLength = 12 })
+            @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "required" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Register" class="buttonstyle" />
+        </td>
+    </tr>
+</table>
 }
 

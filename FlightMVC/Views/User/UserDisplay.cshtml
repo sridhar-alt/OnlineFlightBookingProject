@@ -1,36 +1,37 @@
 ﻿@model IEnumerable<OnilneFlightBooking.Entity.Flight>
 
 @*@{
-    ViewBag.Title = "UserDisplay";
-}*@
+        ViewBag.Title = "UserDisplay";
+    }*@
 
 @if (TempData["message"] != null)
 {
     @Html.Label((string)TempData["message"])
 }
 <h2>UserDisplay</h2>
-
 <table cellspacing="0" border="1">
     <tr>
         <th>Flight Id</th>
         <th>Flight Name</th>
         <th>FromLocation</th>
         <th>ToLocation</th>
+        <th>Date</th>
         <th>ArrivalTime</th>
-        <th>Duration</th>
         <th>TotalSeat</th>
         <th>Details</th>
     </tr>
-    @foreach (OnilneFlightBooking.Entity.Flight flight in Model)
+    @foreach (var item in Model)
     {
         <tr style="text-align:center">
-            <td>@flight.FlightId</td>
-            <td>@flight.FlightName</td>
-            <td>@flight.FromLocation</td>
-            <td>@flight.ToLocation</td>
-            <td>@flight.ArrivalTime</td>
-            <td>@flight.Duration.ToShortTimeString()</td>
-            <td>@flight.TotalSeat</td>
+            <td>@item.FlightId</td>
+            <td>@item.FlightName</td>
+            <td>@item.FromLocation</td>
+            <td>@item.ToLocation</td>
+            <td>@item.Date.ToShortDateString()</td>
+            <td>@item.ArrivalTime.ToShortTimeString()</td>
+            <td>@item.TotalSeat</td>
+            <td>@Html.ActionLink("BookTicket", "BookTicket", new { id = item.FlightId })</td>
         </tr>
     }
 </table>
+@Html.ActionLink("Back to search","Search","Home")

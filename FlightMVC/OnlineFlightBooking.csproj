@@ -175,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FlightModel.cs" />
+    <Compile Include="Models\SearchFlight.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Models\FlightTravelClassModel.cs" />
@@ -211,6 +212,9 @@
     <Content Include="Views\FlightTravelClasses\DisplayClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\DeleteClass.cshtml" />
     <Content Include="Views\Flight\DisplayFlight.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\User\BookTicket.cshtml" />
+    <Content Include="Views\User\TicketCount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

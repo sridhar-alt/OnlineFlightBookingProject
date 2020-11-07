@@ -13,6 +13,7 @@ namespace OnlineFlightBooking.App_Start
                 config.CreateMap<SignInModel, User>();
                 config.CreateMap<FlightModel, Flight>();
                 config.CreateMap<FlightTravelClassModel, FlightTravelClass>();
+                config.CreateMap<SearchFlight, Flight>();
             });
         }
     }

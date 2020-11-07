@@ -1,16 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace OnlineFlightBooking.Models
 {
-    public class FlightModel  //Model for Flight Entity
+    public class SearchFlight
     {
-        [Required]
-        public int FlightId { get; set; }
-        [Required(ErrorMessage = "Name required")]
-        [StringLength(25, ErrorMessage = "Name cannot be longer than 30 characters.")]
-        [RegularExpression(@"(^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$)", ErrorMessage = "Invalid flightId")]
-        public string FlightName { get; set; }
         [Required(ErrorMessage = " From Location required")]
         [StringLength(25, ErrorMessage = "Name cannot be longer than 30 characters.")]
         [RegularExpression(@"(^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$)", ErrorMessage = "Invalid FlightName")]
@@ -19,13 +16,8 @@ namespace OnlineFlightBooking.Models
         [StringLength(25, ErrorMessage = "Name cannot be longer than 30 characters.")]
         [RegularExpression(@"(^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$)", ErrorMessage = "Invalid ToLocation")]
         public string ToLocation { get; set; }
-        [Required(ErrorMessage = "Arrivel Time required")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d/M/yyyy}")]
-        public DateTime Date { get; set; }
-        [Required(ErrorMessage = "Dutation Time required")]
+        [Required(ErrorMessage = "Date required")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
-        public DateTime ArrivalTime { get; set; }
-        [Required(ErrorMessage = "Total seat required")]
-        public int TotalSeat { get; set; }
+        public DateTime Date { get; set; }
     }
 }

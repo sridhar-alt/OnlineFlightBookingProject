@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -26,6 +25,7 @@
         {
             @Html.ActionLink("SignIn", "SignIn", "User",null,new { @class = "link" })
         }
+        @Html.ActionLink("SearchFlight","Search", "Home",null,new { @class = "link" })
     </div>
     <div>@RenderBody()</div>
 </body>

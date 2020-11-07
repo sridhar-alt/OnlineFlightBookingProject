@@ -32,7 +32,7 @@ namespace OnlineFlightBooking.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "Invalid Password")]
+        [RegularExpression(@"((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})", ErrorMessage = "*There should be 1 Symbol, Uppercase and LowerCase")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Confirm password is required")]
