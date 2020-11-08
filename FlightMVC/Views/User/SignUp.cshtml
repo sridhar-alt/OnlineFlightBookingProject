@@ -10,32 +10,32 @@
 
 @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
 {
-    <table>
+    <table id="normal">
         <tr style="border-spacing:10px">
             <td>@Html.LabelFor(model => model.Name)</td>
             <td>
-                @Html.TextBoxFor(model => model.Name, new { @MaxLength = 25 })
+                @Html.TextBoxFor(model => model.Name, new {placeholder="Enter the Name", @MaxLength = 25 })
                 @Html.ValidationMessageFor(Model => Model.Name, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Mobile)</td>
             <td>
-                @Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })
+                @Html.TextBoxFor(model => model.Mobile, new {placeholder="Enter the Mobile No", @MaxLength = 10 })
                 @Html.ValidationMessageFor(Model => Model.Mobile, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Dob)</td>
             <td>
-                @Html.TextBoxFor(model => model.Dob, new { @type = "date" })
+                @Html.TextBoxFor(model => model.Dob, new {placeholder="Enter Date Of Birth", @type = "date" })
                 @Html.ValidationMessageFor(Model => Model.Dob, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Mail)</td>
             <td>
-                @Html.TextBoxFor(model => model.Mail)
+                @Html.TextBoxFor(model => model.Mail,new { placeholder="Enter the Mail Id"})
                 @Html.ValidationMessageFor(model => model.Mail, "", new { @class = "required" })
             </td>
 
@@ -51,21 +51,21 @@
         <tr>
             <td>@Html.LabelFor(model => model.UserAddress)</td>
             <td>
-                @Html.TextBoxFor(model => model.UserAddress, new { @MaxLength = 50 })
+                @Html.TextBoxFor(model => model.UserAddress, new {placeholder="Enter the Address", @MaxLength = 50 })
             @Html.ValidationMessageFor(model => model.UserAddress, "", new { @class = "required" })
         </td>
     </tr>
     <tr>
         <td>@Html.LabelFor(model => model.Password)</td>
         <td>
-            @Html.PasswordFor(model => model.Password, new { @MinLength = 8, @MaxLength = 12 })
+            @Html.PasswordFor(model => model.Password, new {placeholder="Enter the Password", @MinLength = 8, @MaxLength = 12 })
             @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "required" })
         </td>
     </tr>
     <tr>
         <td>@Html.LabelFor(model => model.ConfirmPassword)</td>
         <td>
-            @Html.PasswordFor(model => model.ConfirmPassword, new { @MinLength = 8, @MaxLength = 12 })
+            @Html.PasswordFor(model => model.ConfirmPassword, new {placeholder="Reenter Password", @MinLength = 8, @MaxLength = 12 })
             @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "required" })
         </td>
     </tr>

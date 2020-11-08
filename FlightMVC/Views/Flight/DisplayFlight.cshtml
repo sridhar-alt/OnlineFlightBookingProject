@@ -2,38 +2,14 @@
 @{
     ViewBag.Title = "Displayflight";
 }
-
+<link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
 <h2>AdminPage</h2>
 @*<h3>@TempData["message"]</h3>*@
 <a>
     @Html.ActionLink("AddFlight", "AddFlight", "Flight")
 </a>
-<style>
-    table, td, th {
-        border: 1px solid black;
-        text-align: left;
-        font-family: Arial;
-    }
 
-    th {
-        background-color: cadetblue;
-        color: white;
-    }
-
-    table {
-        border-collapse: collapse;
-        width: 100%;
-        text-align: left;
-    }
-
-    th, td {
-        padding: 15px;
-    }
-    tr:hover {
-        background-color: #e6eeff;
-    }
-</style>
-<table>
+<table id="TableStyle">
     <tr>
         <th>Flight Id</th>
         <th>Flight Name</th>

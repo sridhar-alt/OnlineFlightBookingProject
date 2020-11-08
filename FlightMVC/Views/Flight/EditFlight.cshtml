@@ -9,7 +9,7 @@
 @using (Html.BeginForm("EditFlight", "Flight"))
 {
     @Html.HiddenFor(model => model.FlightId)
-<table>
+<table id="normal">
     <tr style="border-spacing:10px">
         <td>@Html.Label("Flight Id")</td>
         <td>

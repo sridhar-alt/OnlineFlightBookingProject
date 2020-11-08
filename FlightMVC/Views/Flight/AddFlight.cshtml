@@ -8,39 +8,39 @@
 
 @using (Html.BeginForm("AddFlight", "Flight", FormMethod.Post))
 {
-    <table>
+    <table id="normal">
         <tr style="border-spacing:10px">
             <td>@Html.Label("FlightName")</td>
             <td>
-                @Html.TextBoxFor(model => model.FlightName, new { @MaxLength = 25 })
+                @Html.TextBoxFor(model => model.FlightName, new {placeholder="Enter Flight Name", @MaxLength = 25 })
                 @Html.ValidationMessageFor(Model => Model.FlightName, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("From Location")</td>
             <td>
-                @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
+                @Html.TextBoxFor(model => model.FromLocation, new {placeholder="Enter From Location", @MaxLength = 10 })
                 @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("ToLocation")</td>
             <td>
-                @Html.TextBoxFor(model => model.ToLocation)
+                @Html.TextBoxFor(model => model.ToLocation,new {placeholder="Enter To Location" })
                 @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("ArrivalTime")</td>
             <td>
-                @Html.TextBoxFor(model => model.Date,new {@type="date"})
+                @Html.TextBoxFor(model => model.Date,new {placeholder="Enter ArrivalTime",@type="date"})
                 @Html.ValidationMessageFor(Model => Model.Date, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("Duration")</td>
             <td>
-                @Html.EditorFor(model => model.ArrivalTime,new { @type="time"})
+                @Html.EditorFor(model => model.ArrivalTime,new {placeholder="Enter Duration", @type="time"})
                 @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
             </td>
         </tr>

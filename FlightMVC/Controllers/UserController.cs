@@ -85,19 +85,7 @@ namespace OnlineFlightBooking.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("SignIn");
         }
-        // GET: User/Display
         [HttpGet]
-        public ActionResult UserDisplay()
-        {
-            IEnumerable<Flight> flight = (IEnumerable<Flight>)TempData["Flights"];
-            if (flight != null)
-                return View(flight);           //Calling View for the User Flight Display
-            else
-                return RedirectToAction("Search","Home");
-        }
-        
-        [HttpGet]
-        //[Authorize(Roles = "User")]
         public ActionResult BookTicket(int id)
         {
             TempData["FlightTravelClass"] = FlightBL.DisplayClass(id);

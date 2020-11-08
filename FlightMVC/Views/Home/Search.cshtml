@@ -4,35 +4,55 @@
 }
 
 <h2>Search</h2>
-
 @using (Html.BeginForm("Search", "Home", FormMethod.Post))
 {
-    <table>
+    <table id="normal">
         <tr>
             <td>@Html.Label("From Location")</td>
+            <td>@Html.Label("ToLocation")</td>
+            <td>@Html.Label("ArrivalTime")</td>
+        </tr>
+        <tr>
             <td>
-                @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
+                @Html.TextBoxFor(model => model.FromLocation, new { placeholder = "Enter From Location", @MaxLength = 10 })
                 @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
             </td>
-        </tr>
-        <tr>
-            <td>@Html.Label("ToLocation")</td>
             <td>
-                @Html.TextBoxFor(model => model.ToLocation)
+                @Html.TextBoxFor(model => model.ToLocation, new { placeholder = "Enter To Location" })
                 @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
             </td>
-        </tr>
-        <tr>
-            <td>@Html.Label("ArrivalTime")</td>
             <td>
                 @Html.TextBoxFor(model => model.Date, new { @type = "date" })
                 @Html.ValidationMessageFor(Model => Model.Date, "", new { @class = "required" })
             </td>
-        </tr>
-        <tr>
             <td>
                 <input type="submit" value="Search" />
             </td>
         </tr>
     </table>
 }
+<table id="TableStyle">
+    <tr>
+        <th>FlightId</th>
+        <th>FlightName</th>
+        <th>FromLocation</th>
+        <th>ToLocation</th>
+        <th>Date</th>
+        <th>ArrivalTime</th>
+        <th>TotalSeat</th>
+        <th>Booking Details</th>
+    </tr>
+    @foreach (OnlineFlightBooking.Models.FlightModel flight in (List<OnlineFlightBooking.Models.FlightModel>)TempData["flightsDisplay"])
+    {
+        <tr>
+            <td>@flight.FlightId</td>
+            <td>@flight.FlightName</td>
+            <td>@flight.FromLocation</td>
+            <td>@flight.ToLocation</td>
+            <td>@flight.Date</td>
+            <td>@flight.ArrivalTime</td>
+            <td>@flight.TotalSeat</td>
+            <td>@Html.ActionLink("BookTicket", "BookTicket", "User", new { id = flight.FlightId }, null)</td>
+        </tr>
+    }
+</table>

@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <table>
+    <table id="normal">
         @Html.HiddenFor(model => model.FlightId)
         <tr>
             <td> @Html.LabelFor(model => model.ClassId)</td>

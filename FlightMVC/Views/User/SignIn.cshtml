@@ -11,19 +11,19 @@
 <link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
 @using (Html.BeginForm("SignIn", "User", FormMethod.Post))
 {
-    <table class="tablestyle">
+    <table id="normal">
         <tr>
             <td>@Html.LabelFor(model => model.Mobile)</td>
             <td>
-                @Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })
+                @Html.TextBoxFor(model => model.Mobile, new {placeholder="Enter the Mobile No", @MaxLength = 10 })
                 @Html.ValidationMessageFor(Model => Model.Mobile, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Password)</td>
             <td>
-                @Html.PasswordFor(model => model.Password)
-                @Html.ValidationMessageFor(Model => Model.Password, "", new { @class = "required" })
+                @Html.PasswordFor(model => model.Password,new { palceholder="Enter the Password"})
+                @Html.ValidationMessageFor(Model => Model.Password, "",new { @class = "required" })
             </td>
         </tr>
         <tr>
