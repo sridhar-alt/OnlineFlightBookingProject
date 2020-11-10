@@ -15,6 +15,8 @@ namespace OnilneFlightBooking.Entity
         public int ClassId { get; set; }
         public TravelClass TravelClass { get; set; }
         [Required]
+        public int FlightTravelClassId { get; set; }
+        [Required]
         public string Mobile{ get; set; }
         public User User { get; set; }
         public int TotalPassenger { get; set; }

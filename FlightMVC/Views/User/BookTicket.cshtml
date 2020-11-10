@@ -10,50 +10,40 @@
 {
     @Html.HiddenFor(model => model.FlightId)
 <table id="TableStyle">
-    <tr >
+    <tr>
         <td>@Html.Label("Flight Id")</td>
+        <td>@Html.Label("FlightName")</td>
+        <td>@Html.Label("From Location")</td>
+        <td>@Html.Label("ToLocation")</td>
+        <td>@Html.Label("Date")</td>
+        <td>@Html.Label("ArrivalTime")</td>
+        <td>@Html.Label("TotalSeat")</td>
+    </tr>
+    <tr>
         <td>
             @Html.ValueFor(model => model.FlightId)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("FlightName")</td>
         <td>
             @Html.ValueFor(model => model.FlightName)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("From Location")</td>
         <td>
             @Html.ValueFor(model => model.FromLocation)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("ToLocation")</td>
         <td>
             @Html.ValueFor(model => model.ToLocation)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("Date")</td>
         <td>
             @Html.ValueFor(model => model.Date)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("ArrivalTime")</td>
         <td>
             @Html.ValueFor(model => model.ArrivalTime)
         </td>
-    </tr>
-    <tr>
-        <td>@Html.Label("TotalSeat")</td>
         <td>
             @Html.ValueFor(model => model.TotalSeat)
         </td>
     </tr>
 </table>
-<table>
+<table id="TableStyle">
     <tr>
         <th>class</th>
         <th>No of Seats</th>
@@ -77,7 +67,7 @@
                         @flightTravelClass.SeatCost
                     </td>
                     <td>
-                        @Html.ActionLink("TicketCount", "TicketCount", new { id =flightTravelClass.FlightTravelClassId })
+                        @Html.ActionLink("Add To Cart And Ticket Count", "TicketCount", new { id =flightTravelClass.FlightTravelClassId})
                     </td>
                 }
             </tr>

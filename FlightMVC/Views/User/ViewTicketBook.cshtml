@@ -1,0 +1,41 @@
+﻿@model IEnumerable<OnilneFlightBooking.Entity.TicketBook>
+@{
+    ViewBag.Title = "ViewTicketBook";
+}
+
+<h2>ViewTicketBook</h2>
+
+<table id="TableStyle">
+    <tr>
+        <th>Ticket Id</th>
+        <th>Flight Name</th>
+        <th>Class Name</th>
+        <th>No of person</th>
+        <th>Cost</th>
+        <th>Change</th>
+    </tr>
+    @foreach(OnilneFlightBooking.Entity.TicketBook ticket in Model)
+    {
+        <tr>
+            <td>@ticket.TicketId</td>
+            @foreach(OnilneFlightBooking.Entity.Flight flight in(List<OnilneFlightBooking.Entity.Flight>)TempData["flights"])
+            {
+                if(ticket.FlightId==flight.FlightId)
+                {
+                    <td>@flight.FlightName</td>
+                }
+            }
+            @foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
+            {
+                if(ticket.ClassId==travelClass.ClassId)
+                {
+                    <td>@travelClass.ClassName</td>
+                }
+            }
+            <td>@ticket.TotalPassenger</td>
+            <td>@ticket.TotalCost</td>
+            <td>@Html.ActionLink("TicketCount", "TicketCount", new { id = ticket.FlightTravelClassId }) | @Html.ActionLink("Delete", "DeleteTicketCount", new { id = ticket.TicketId })</td>
+        </tr>
+    }
+</table>
+

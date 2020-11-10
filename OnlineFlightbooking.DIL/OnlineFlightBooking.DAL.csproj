@@ -57,41 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlightRepository.cs" />
-    <Compile Include="Migrations\202003171511252_InitialCreate.cs" />
-    <Compile Include="Migrations\202003171511252_InitialCreate.designer.cs">
-      <DependentUpon>202003171511252_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011060956490_totalseat.cs" />
-    <Compile Include="Migrations\202011060956490_totalseat.designer.cs">
-      <DependentUpon>202011060956490_totalseat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011061001573_range.cs" />
-    <Compile Include="Migrations\202011061001573_range.designer.cs">
-      <DependentUpon>202011061001573_range.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011061353347_alter.cs" />
-    <Compile Include="Migrations\202011061353347_alter.designer.cs">
-      <DependentUpon>202011061353347_alter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011070711523_date.cs" />
-    <Compile Include="Migrations\202011070711523_date.designer.cs">
-      <DependentUpon>202011070711523_date.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011070741003_date1.cs" />
-    <Compile Include="Migrations\202011070741003_date1.designer.cs">
-      <DependentUpon>202011070741003_date1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011071028177_ticket.cs" />
-    <Compile Include="Migrations\202011071028177_ticket.designer.cs">
-      <DependentUpon>202011071028177_ticket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011071032371_tickets.cs" />
-    <Compile Include="Migrations\202011071032371_tickets.designer.cs">
-      <DependentUpon>202011071032371_tickets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011071153320_ticketbook.cs" />
-    <Compile Include="Migrations\202011071153320_ticketbook.designer.cs">
-      <DependentUpon>202011071153320_ticketbook.cs</DependentUpon>
+    <Compile Include="Migrations\202011100647357_new1.cs" />
+    <Compile Include="Migrations\202011100647357_new1.designer.cs">
+      <DependentUpon>202011100647357_new1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserContext.cs" />
@@ -109,32 +77,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003171511252_InitialCreate.resx">
-      <DependentUpon>202003171511252_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011060956490_totalseat.resx">
-      <DependentUpon>202011060956490_totalseat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011061001573_range.resx">
-      <DependentUpon>202011061001573_range.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011061353347_alter.resx">
-      <DependentUpon>202011061353347_alter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011070711523_date.resx">
-      <DependentUpon>202011070711523_date.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011070741003_date1.resx">
-      <DependentUpon>202011070741003_date1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011071028177_ticket.resx">
-      <DependentUpon>202011071028177_ticket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011071032371_tickets.resx">
-      <DependentUpon>202011071032371_tickets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011071153320_ticketbook.resx">
-      <DependentUpon>202011071153320_ticketbook.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011100647357_new1.resx">
+      <DependentUpon>202011100647357_new1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

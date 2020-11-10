@@ -12,20 +12,23 @@
 <p>
     @Html.ActionLink("Create New", "CreateClass")
 </p>
-<table id="normal">
+<table id="TableStyle">
     <tr>
-        <td>
+        <th>
             @Html.DisplayNameFor(model => model.Flight.FlightName)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TravelClass.ClassName)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SeatCount)
-        </td>
-        <td>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SeatCost)
-        </td>
+        </th>
+        <th>
+            Modify
+        </th>
     </tr>
 
     @foreach (var item in Model)

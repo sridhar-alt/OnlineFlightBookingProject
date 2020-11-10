@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "OnlineFlightbooking.DAL.UserContext";
         }
 
         protected override void Seed(OnlineFlightbooking.DAL.UserContext context)

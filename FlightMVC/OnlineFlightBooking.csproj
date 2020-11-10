@@ -179,6 +179,7 @@
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Models\FlightTravelClassModel.cs" />
+    <Compile Include="Models\TicketBookModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,9 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\User\BookTicket.cshtml" />
     <Content Include="Views\User\TicketCount.cshtml" />
+    <Content Include="Views\User\Payment.cshtml" />
+    <Content Include="Views\User\ViewTicketBook.cshtml" />
+    <Content Include="Views\User\DeleteTicketCount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

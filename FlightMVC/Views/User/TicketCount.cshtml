@@ -1,13 +1,59 @@
-﻿@model OnlineFlightBooking.Models.FlightTravelClassModel
+﻿@model OnlineFlightBooking.Models.TicketBookModel
 @{
     ViewBag.Title = "TicketCount";
 }
 
 <h2>TicketCount</h2>
-<Table>
+<Table id="normal">
+    <tr>
+        <td>@Html.Label("Flight Id")</td>
+        <td>
+            @Html.ValueFor(model => model.FlightId)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Flight Name")</td>
+        <td>
+            @TempData["Flight Name"]
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Class Id")</td>
+        <td>
+            @Html.ValueFor(model => model.ClassId)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Class Name")</td>
+        <td>
+            @TempData["classname"]
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Mobile")</td>
+        <td>
+            @Html.ValueFor(model => model.Mobile)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("No Of Passenger")</td>
+        <td>
+            @Html.ActionLink("-", "DecPassenger", new {id = Model.TicketId },null)| @Html.TextBoxFor(model => model.TotalPassenger, new { @readonly="readonly" }) | @Html.ActionLink("+", "IncPassenger", new {id = Model.TicketId },null)
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.Label("Total Cost")</td>
+        <td>
+            @Html.TextBoxFor(model => model.TotalCost, new { @readonly="readonly" })
+        </td>
+    </tr>
     <tr>
         <td>
+            <input type="submit" value="BookTicket"onclick="@("window.location.href='" + @Url.Action("Payment", "User",new {id=Model.TicketId }) + "'");" class="buttonstyle" />
         </td>
+        <tc>
+            @Html.ActionLink("Go back to DisplayFlight", "Search", "Home")
+        </tc>
     </tr>
 </Table>
 

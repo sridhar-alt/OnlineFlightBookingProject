@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class new1 : DbMigration
     {
         public override void Up()
         {
@@ -15,8 +15,8 @@
                         FlightName = c.String(nullable: false, maxLength: 25),
                         FromLocation = c.String(nullable: false, maxLength: 25),
                         ToLocation = c.String(nullable: false, maxLength: 25),
+                        Date = c.DateTime(nullable: false),
                         ArrivalTime = c.DateTime(nullable: false),
-                        Duration = c.DateTime(nullable: false),
                         TotalSeat = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.FlightId);
@@ -45,6 +45,26 @@
                         ClassName = c.String(nullable: false, maxLength: 25),
                     })
                 .PrimaryKey(t => t.ClassId);
+            
+            CreateTable(
+                "dbo.TicketBooks",
+                c => new
+                    {
+                        TicketId = c.Int(nullable: false, identity: true),
+                        FlightId = c.Int(nullable: false),
+                        ClassId = c.Int(nullable: false),
+                        FlightTravelClassId = c.Int(nullable: false),
+                        Mobile = c.String(nullable: false, maxLength: 128),
+                        TotalPassenger = c.Int(nullable: false),
+                        TotalCost = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.TicketId)
+                .ForeignKey("dbo.Flights", t => t.FlightId, cascadeDelete: true)
+                .ForeignKey("dbo.TravelClasses", t => t.ClassId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.Mobile, cascadeDelete: true)
+                .Index(t => t.FlightId)
+                .Index(t => t.ClassId)
+                .Index(t => t.Mobile);
             
             CreateTable(
                 "dbo.Users",
@@ -116,11 +136,18 @@
             DropStoredProcedure("dbo.sp_DeleteUser");
             DropStoredProcedure("dbo.sp_UpdateUser");
             DropStoredProcedure("dbo.sp_InsertUser");
+            DropForeignKey("dbo.TicketBooks", "Mobile", "dbo.Users");
+            DropForeignKey("dbo.TicketBooks", "ClassId", "dbo.TravelClasses");
+            DropForeignKey("dbo.TicketBooks", "FlightId", "dbo.Flights");
             DropForeignKey("dbo.FlightTravelClasses", "ClassId", "dbo.TravelClasses");
             DropForeignKey("dbo.FlightTravelClasses", "FlightId", "dbo.Flights");
+            DropIndex("dbo.TicketBooks", new[] { "Mobile" });
+            DropIndex("dbo.TicketBooks", new[] { "ClassId" });
+            DropIndex("dbo.TicketBooks", new[] { "FlightId" });
             DropIndex("dbo.FlightTravelClasses", new[] { "ClassId" });
             DropIndex("dbo.FlightTravelClasses", new[] { "FlightId" });
             DropTable("dbo.Users");
+            DropTable("dbo.TicketBooks");
             DropTable("dbo.TravelClasses");
             DropTable("dbo.FlightTravelClasses");
             DropTable("dbo.Flights");

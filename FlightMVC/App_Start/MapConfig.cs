@@ -14,6 +14,7 @@ namespace OnlineFlightBooking.App_Start
                 config.CreateMap<FlightModel, Flight>();
                 config.CreateMap<FlightTravelClassModel, FlightTravelClass>();
                 config.CreateMap<SearchFlight, Flight>();
+                config.CreateMap<TicketBookModel,TicketBook>();
             });
         }
     }

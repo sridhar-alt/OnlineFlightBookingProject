@@ -15,7 +15,7 @@
         <tr>
             <td> @Html.LabelFor(model => model.ClassId)</td>
             <td>
-                @Html.DropDownList("ClassId", (IEnumerable < SelectListItem>)ViewBag.ClassId)
+                @Html.DropDownList("ClassId", (IEnumerable<SelectListItem>)ViewBag.ClassId)
                 @Html.ValidationMessageFor(model => model.ClassId)
             </td>
         </tr>
@@ -35,10 +35,17 @@
                 @Html.ValidationMessageFor(model => model.SeatCost, "", new { @class = "text-danger" })
             </td>
         </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Create" class="buttonstyle" />
+            </td>
+            <td>
+                @Html.ActionLink("Back to List", "DisplayClass")
+            </td>
+        </tr>
     </table>
-    <input type="submit" value="Create" />
-    @Html.ActionLink("Back to List", "DisplayClass")
 }
+
 
 
 

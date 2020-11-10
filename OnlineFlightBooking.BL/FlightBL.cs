@@ -5,7 +5,7 @@ namespace OnlineFlightBooking.BL
 {
     public class FlightBL
     {
-        public static IEnumerable<Flight> DisplayFlight()   
+        public static IEnumerable<Flight> DisplayFlight()
         {
             IEnumerable<Flight> flightDetails = FlightRepository.DisplayFlight();
             return flightDetails;                                                     //Returns the flight list from the Flight Repository
@@ -70,6 +70,38 @@ namespace OnlineFlightBooking.BL
         {
             IEnumerable<Flight> flightDetails = FlightRepository.SearchDisplayFlight(flight);
             return flightDetails;                                                     //Returns the flight list from the Flight Repository
+        }
+        public static TravelClass GetTravelClassName(int id)
+        {
+            return FlightRepository.GetTravelClassName(id);
+        }
+        public static FlightTravelClass GetFlightTravelClass(int flightId, int classId)
+        {
+            return FlightRepository.GetFlightTravelClass(flightId, classId);
+        }
+        public static TicketBook GetBook(FlightTravelClass flightTravel, string mobile)
+        {
+            return FlightRepository.GetBook(flightTravel, mobile);
+        }
+        public static IEnumerable<TicketBook> GetBookUser(string mobile)
+        {
+            return FlightRepository.GetBookUser(mobile);
+        }
+        public static TicketBook GetBook(int id)
+        {
+            return FlightRepository.GetBook(id);
+        }
+        public static void AddTicketBook(TicketBook ticketBook)
+        {
+            FlightRepository.AddTicketBook(ticketBook);
+        }
+        public static void UpdateTicketBook(TicketBook ticketBook)
+        {
+            FlightRepository.UpdateTicketBook(ticketBook);
+        }
+        public static void DeleteTicketCount(int id)
+        {
+            FlightRepository.DeleteTicketCount(id);
         }
     }
 }

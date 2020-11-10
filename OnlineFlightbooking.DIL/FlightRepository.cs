@@ -54,7 +54,7 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
                 TotalSeat(create.FlightId);
             }
-        } 
+        }
         public static void EditClass(FlightTravelClass flightTravelClass)   //Edit the FlightTravelClass in the table 
         {
             using (UserContext userContext = new UserContext())
@@ -137,7 +137,68 @@ namespace OnlineFlightbooking.DAL
             using (UserContext userContext = new UserContext())
             {
                 return (from val in userContext.FlightEntity where flight.FromLocation == val.FromLocation && flight.ToLocation == val.ToLocation && flight.Date == val.Date select val).ToList();
-            }  
+            }
+        }
+        public static TravelClass GetTravelClassName(int id)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return (userContext.TravelClasses.Where(model => model.ClassId == id).SingleOrDefault());
+            }
+        }
+        public static FlightTravelClass GetFlightTravelClass(int flightId, int classId)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return (userContext.FlightTravelClasses.Where(model => model.FlightId == flightId && model.ClassId == classId).SingleOrDefault());
+            }
+        }
+        public static TicketBook GetBook(FlightTravelClass flightTravel, string mobile)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return (userContext.TicketBooks.Where(model => model.ClassId == flightTravel.ClassId && model.FlightId == flightTravel.FlightId && model.Mobile == mobile).FirstOrDefault());
+            }
+        }
+        public static TicketBook GetBook(int id)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return (userContext.TicketBooks.Where(model => model.TicketId == id).FirstOrDefault());
+            }
+        }
+        public static IEnumerable<TicketBook> GetBookUser(string mobile)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return (userContext.TicketBooks.Where(model => model.Mobile == mobile).ToList());
+            }
+        }
+        public static void AddTicketBook(TicketBook ticketBook)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                userContext.TicketBooks.Add(ticketBook);
+                userContext.SaveChanges();
+            }
+        }
+        public static void UpdateTicketBook(TicketBook ticketBook)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                userContext.Entry(ticketBook).State = EntityState.Modified;
+                userContext.SaveChanges();
+            }
+        }
+        public static void DeleteTicketCount(int id)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                TicketBook ticket = userContext.TicketBooks.Where(model => model.TicketId == id).SingleOrDefault();
+                userContext.TicketBooks.Attach(ticket);
+                userContext.TicketBooks.Remove(ticket);
+                userContext.SaveChanges();
+            }
         }
     }
 }
