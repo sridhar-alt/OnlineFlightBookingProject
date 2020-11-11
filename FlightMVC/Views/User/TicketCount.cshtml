@@ -38,7 +38,7 @@
     <tr>
         <td>@Html.Label("No Of Passenger")</td>
         <td>
-            @Html.ActionLink("-", "DecPassenger", new {id = Model.TicketId },null)| @Html.TextBoxFor(model => model.TotalPassenger, new { @readonly="readonly" }) | @Html.ActionLink("+", "IncPassenger", new {id = Model.TicketId },null)
+            @Html.ActionLink("- ", "DecPassenger", new {id = Model.TicketId },null)| @Html.TextBoxFor(model => model.TotalPassenger, new { @readonly="readonly" }) | @Html.ActionLink(" +", "IncPassenger", new {id = Model.TicketId },null)
         </td>
     </tr>
     <tr>

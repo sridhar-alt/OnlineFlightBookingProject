@@ -29,7 +29,10 @@
     background-color: whitesmoke;
     color:cadetblue;
 }
-
+.menu-right
+{
+    float:right;
+}
 
 #normal {
     margin-left: auto;

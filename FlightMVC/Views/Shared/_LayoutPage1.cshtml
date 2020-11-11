@@ -18,9 +18,10 @@
             if (HttpContext.Current.User.IsInRole("User"))
             {
                 @Html.ActionLink("TicketBook Cart", "ViewTicketBook", "User", null, new { @class = "link" })
-                @Html.ActionLink(HttpContext.Current.User.Identity.Name, "userDisplay", new { @class = "link" })
             }
-            @Html.ActionLink("Logout", "LogOff", "User", null, new { @class = "link" })
+            <div class="menu-right">
+                    @Html.ActionLink("Logout", "LogOff", "User", null, new { @class = "link" })
+            </div>
         }
         else
         {
