@@ -10,9 +10,15 @@ using System;
 namespace OnlineFlightBooking.Controllers
 {
     [HandleError]
-
     public class UserController : Controller
     {
+        IUserBL userBL;
+        IFlightBL flightBL;
+        public UserController()
+        {
+             userBL=new UserBL();
+            flightBL = new FlightBL();
+        }
         // GET: User/SignUp
         [HttpGet]
         public ActionResult SignUp()
@@ -28,10 +34,10 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)  //condition pass when all the model state validation is true
             {
                 User user = AutoMapper.Mapper.Map<SignUpModel, User>(signUp);    //Auto Mapper model to entity
-                bool result = UserBL.ValidateUser(user);
+                bool result = userBL.ValidateUser(user);
                 if (result)
                 {
-                    UserBL.RegisterUser(user);
+                    userBL.RegisterUser(user);
                     TempData["message"] = "registered successfull..";
                     return RedirectToAction("SignIn");
                 }
@@ -56,7 +62,7 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
                 User user = AutoMapper.Mapper.Map<SignInModel, User>(signIn);   //Auto Mapper model to entity
-                string role = UserBL.ValidateLogin(user);
+                string role = userBL.ValidateLogin(user);
                 if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.Mobile, false);
@@ -89,9 +95,9 @@ namespace OnlineFlightBooking.Controllers
         [HttpGet]
         public ActionResult BookTicket(int id)
         {
-            TempData["FlightTravelClass"] = FlightBL.DisplayClass(id);
-            TempData["TravelClass"] = FlightBL.GetTravelClass();
-            Flight flight = FlightBL.GetFlightDetails(id);
+            TempData["FlightTravelClass"] = flightBL.DisplayClass(id);
+            TempData["TravelClass"] = flightBL.GetTravelClass();
+            Flight flight = flightBL.GetFlightDetails(id);
             FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
             TempData["FlightId"] = flight.FlightId;
             return View(flightModel);
@@ -100,12 +106,12 @@ namespace OnlineFlightBooking.Controllers
         public ActionResult TicketCount(int id)
         {
             string mobile = TempData.Peek("UserMobile").ToString();
-            FlightTravelClass flightTravelClass = FlightBL.GetDetailsClass(id);
+            FlightTravelClass flightTravelClass = flightBL.GetDetailsClass(id);
             //return View(ticketBookModel);
-            TicketBook ticketBook = FlightBL.GetBook(flightTravelClass, mobile);
+            TicketBook ticketBook = flightBL.GetBookUserId(flightTravelClass, mobile);
             TicketBookModel ticketBookModel = new TicketBookModel();
-            Flight flight = FlightBL.GetFlightDetails(flightTravelClass.FlightId);
-            TravelClass travelClass = FlightBL.GetTravelClassName(flightTravelClass.ClassId);
+            Flight flight = flightBL.GetFlightDetails(flightTravelClass.FlightId);
+            TravelClass travelClass = flightBL.GetTravelClassName(flightTravelClass.ClassId);
             if (ticketBook==null)
             {
                 FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);       //Auto Mapper entity to model
@@ -119,7 +125,7 @@ namespace OnlineFlightBooking.Controllers
                 TempData["Flight Name"] = flight.FlightName;
                 TempData["classname"] = travelClass.ClassName;
                 TicketBook ticket = AutoMapper.Mapper.Map<TicketBookModel, TicketBook>(ticketBookModel);
-                FlightBL.AddTicketBook(ticket);
+                flightBL.AddTicketBook(ticket);
                 return View(ticketBookModel);
             }
             TempData["Flight Name"] = flight.FlightName;
@@ -135,41 +141,41 @@ namespace OnlineFlightBooking.Controllers
        [HttpGet]
        public ActionResult IncPassenger(int id)
         {
-            TicketBook ticketBook = FlightBL.GetBook(id);
-            FlightTravelClass flightTravelClass = FlightBL.GetFlightTravelClass(ticketBook.FlightId,ticketBook.ClassId);
+            TicketBook ticketBook = flightBL.GetBook(id);
+            FlightTravelClass flightTravelClass = flightBL.GetFlightTravelClass(ticketBook.FlightId,ticketBook.ClassId);
             ticketBook.TotalPassenger = ticketBook.TotalPassenger + 1;
             ticketBook.TotalCost = flightTravelClass.SeatCost * ticketBook.TotalPassenger;
-            FlightBL.UpdateTicketBook(ticketBook);
-            return RedirectToAction("TicketCount",new { id=ticketBook.TicketId});
+            flightBL.UpdateTicketBook(ticketBook);
+            return RedirectToAction("TicketCount",new { id=ticketBook.FlightTravelClassId});
         }
         [HttpGet]
         public ActionResult DecPassenger(int id)
         {
-            TicketBook ticketBook = FlightBL.GetBook(id);
-            FlightTravelClass flightTravelClass = FlightBL.GetFlightTravelClass(ticketBook.FlightId, ticketBook.ClassId);
+            TicketBook ticketBook = flightBL.GetBook(id);
+            FlightTravelClass flightTravelClass = flightBL.GetFlightTravelClass(ticketBook.FlightId, ticketBook.ClassId);
             if(ticketBook.TotalPassenger>1)
             ticketBook.TotalPassenger = ticketBook.TotalPassenger - 1;
             ticketBook.TotalCost = flightTravelClass.SeatCost * ticketBook.TotalPassenger;
-            FlightBL.UpdateTicketBook(ticketBook);
-            return RedirectToAction("TicketCount", new { id = ticketBook.TicketId });
+            flightBL.UpdateTicketBook(ticketBook);
+            return RedirectToAction("TicketCount", new { id = ticketBook.FlightTravelClassId });
         }
         [HttpGet]
         public ActionResult ViewTicketBook()
         {
             string userId = TempData.Peek("UserMobile").ToString();
-            IEnumerable<TicketBook> ticket = FlightBL.GetBookUser(userId);
-            TempData["flights"] = FlightBL.DisplayFlight();
-            TempData["TravelClass"] = FlightBL.GetTravelClass();
+            IEnumerable<TicketBook> ticket = flightBL.GetBookUser(userId);
+            TempData["flights"] = flightBL.DisplayFlight();
+            TempData["TravelClass"] = flightBL.GetTravelClass();
             return View(ticket);
         }
         [HttpGet]
         public ActionResult DeleteTicketCount(int id)
         {
-            FlightBL.DeleteTicketCount(id);
+            flightBL.DeleteTicketCount(id);
             return RedirectToAction("ViewTicketBook");
         }
         [HttpGet]
-        public ActionResult Payment(int id)
+        public ActionResult Payment(int id)            
         {
             return View();
         }

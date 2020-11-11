@@ -3,17 +3,23 @@ using OnlineFlightbooking.DAL;
 
 namespace OnlineFlightBooking.BL
 {
-    public class UserBL
+    public interface IUserBL
     {
-        public static bool ValidateUser(User user)
+        bool ValidateUser(User user);
+        void RegisterUser(User user);
+        string ValidateLogin(User user);
+    }
+    public class UserBL:IUserBL
+    {
+        public bool ValidateUser(User user)
         {
             return UserRepository.ValidateUser(user);
         }
-        public static void RegisterUser(User user)      
+        public void RegisterUser(User user)      
         {
              UserRepository.RegisterUser(user);          // passes the  user details to the user repository
         }
-        public static string ValidateLogin(User user)       // check the user is registered or not
+        public string ValidateLogin(User user)       // check the user is registered or not
         {
             return UserRepository.ValidateLogin(user);      // passes the  user mobile number and password to the user repository
         }

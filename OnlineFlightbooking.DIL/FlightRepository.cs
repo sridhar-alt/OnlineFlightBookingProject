@@ -153,7 +153,7 @@ namespace OnlineFlightbooking.DAL
                 return (userContext.FlightTravelClasses.Where(model => model.FlightId == flightId && model.ClassId == classId).SingleOrDefault());
             }
         }
-        public static TicketBook GetBook(FlightTravelClass flightTravel, string mobile)
+        public static TicketBook GetBookUserId(FlightTravelClass flightTravel, string mobile)
         {
             using (UserContext userContext = new UserContext())
             {

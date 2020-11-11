@@ -6,9 +6,8 @@
     <link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
 </head>
 <body>
-    <div class="heading">ONLINE FLIGHT BOOKING</div>
+    <div class="heading">ONLINE FLIGHT TICKET BOOKING<img src="~/Image/Flightlogo.png" class="logo"></div>
     <div class="menu">
-        @Html.ActionLink("SignUp", "SignUp", "User", null, new { @class = "link" })
         @Html.ActionLink("SearchFlight", "Search", "Home", null, new { @class = "link" })
         @if (HttpContext.Current.User.Identity.IsAuthenticated)
         {
@@ -19,13 +18,14 @@
             if (HttpContext.Current.User.IsInRole("User"))
             {
                 @Html.ActionLink("TicketBook Cart", "ViewTicketBook", "User", null, new { @class = "link" })
-                @Html.ActionLink(HttpContext.Current.User.Identity.Name, "userDisplay" , new { @class = "link" })
+                @Html.ActionLink(HttpContext.Current.User.Identity.Name, "userDisplay", new { @class = "link" })
             }
             @Html.ActionLink("Logout", "LogOff", "User", null, new { @class = "link" })
         }
         else
         {
             @Html.ActionLink("SignIn", "SignIn", "User", null, new { @class = "link" })
+            @Html.ActionLink("SignUp", "SignUp", "User", null, new { @class = "link" })
         }
 
     </div>
