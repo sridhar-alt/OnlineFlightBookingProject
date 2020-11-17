@@ -21,6 +21,7 @@ namespace OnilneFlightBooking.Entity
         public User User { get; set; }
         public int TotalPassenger { get; set; }
         public int TotalCost { get; set; }
-
+        public int TicketStatus { get; set; }
+        public int AccountNumber { get; set; }
     }
 }

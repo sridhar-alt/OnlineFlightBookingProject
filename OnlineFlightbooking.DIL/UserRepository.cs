@@ -45,6 +45,15 @@ namespace OnlineFlightbooking.DAL
                 }
             }
         }
+
+        public static User GetUser(string mobile)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                return userContext.UserEntity.Where(model => model.Mobile == mobile).FirstOrDefault();
+            }
+        }
+
         public static string ValidateLogin(User user)       //Validate the login user based on the mobile number and the Password 
         {
             try

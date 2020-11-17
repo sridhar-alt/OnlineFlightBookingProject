@@ -149,7 +149,6 @@
     <Content Include="Content\themes\FlightDisplay.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Image\airplane-aircraft-sticker-flight-png-favpng-TfVr6T1YbTm5skcbVSn9n188n.jpg" />
     <Content Include="Image\Flightlogo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

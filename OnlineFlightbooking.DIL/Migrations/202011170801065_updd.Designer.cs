@@ -7,13 +7,13 @@ namespace OnlineFlightbooking.DiL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class new1 : IMigrationMetadata
+    public sealed partial class updd : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(new1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updd));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011100647357_new1"; }
+            get { return "202011170801065_updd"; }
         }
         
         string IMigrationMetadata.Source

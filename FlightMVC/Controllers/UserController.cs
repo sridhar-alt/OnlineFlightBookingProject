@@ -34,7 +34,7 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)  //condition pass when all the model state validation is true
             {
                 User user = AutoMapper.Mapper.Map<SignUpModel, User>(signUp);    //Auto Mapper model to entity
-                bool result = userBL.ValidateUser(user);
+                bool result = userBL.ValidateUser(user);            //To check the user is already exists.
                 if (result)
                 {
                     userBL.RegisterUser(user);
@@ -44,7 +44,7 @@ namespace OnlineFlightBooking.Controllers
                 else
                 {
                     ViewBag.Message = "user already exists or Mobile no exists";
-                    return View();
+                    return RedirectToAction("SignIn");
                 }
             }
             return View();          //Calling View for the SignUp(when the ModelState is in valid)
@@ -107,7 +107,6 @@ namespace OnlineFlightBooking.Controllers
         {
             string mobile = TempData.Peek("UserMobile").ToString();
             FlightTravelClass flightTravelClass = flightBL.GetDetailsClass(id);
-            //return View(ticketBookModel);
             TicketBook ticketBook = flightBL.GetBookUserId(flightTravelClass, mobile);
             TicketBookModel ticketBookModel = new TicketBookModel();
             Flight flight = flightBL.GetFlightDetails(flightTravelClass.FlightId);
@@ -122,6 +121,7 @@ namespace OnlineFlightBooking.Controllers
                 ticketBookModel.TotalCost = flightTravelClass.SeatCost;
                 ticketBookModel.FlightTravelClassId = flightTravelClass.FlightTravelClassId;
                 ticketBookModel.Mobile = mobile;
+                ticketBookModel.TicketStatus = 0;
                 TempData["Flight Name"] = flight.FlightName;
                 TempData["classname"] = travelClass.ClassName;
                 TicketBook ticket = AutoMapper.Mapper.Map<TicketBookModel, TicketBook>(ticketBookModel);
@@ -177,7 +177,21 @@ namespace OnlineFlightBooking.Controllers
         [HttpGet]
         public ActionResult Payment(int id)            
         {
-            return View();
+            TicketBook ticketBook = flightBL.GetBook(id);
+            TravelClass travelClass = flightBL.GetTravelClassName(ticketBook.ClassId);
+            Flight flight = flightBL.GetFlightDetails(ticketBook.FlightId);
+            User user = userBL.GetUser(ticketBook.Mobile);
+            TempData["FlightName"] = flight.FlightName;
+            TempData["ClassName"] = travelClass.ClassName;
+            TempData["UserName"] = user.Name;
+            TicketBookModel ticketBookModel = AutoMapper.Mapper.Map<TicketBook, TicketBookModel>(ticketBook);
+            return View(ticketBookModel);
+        }
+        [HttpPost]
+        public ActionResult Payment(TicketBookModel ticketBookModel)
+        {
+
+            return View(ticketBookModel.TicketId);
         }
     }
 }

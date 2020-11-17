@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FlightRepository.cs" />
-    <Compile Include="Migrations\202011100647357_new1.cs" />
-    <Compile Include="Migrations\202011100647357_new1.designer.cs">
-      <DependentUpon>202011100647357_new1.cs</DependentUpon>
+    <Compile Include="Migrations\202011170801065_updd.cs" />
+    <Compile Include="Migrations\202011170801065_updd.designer.cs">
+      <DependentUpon>202011170801065_updd.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserContext.cs" />
@@ -77,8 +77,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202011100647357_new1.resx">
-      <DependentUpon>202011100647357_new1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011170801065_updd.resx">
+      <DependentUpon>202011170801065_updd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,12 +16,10 @@ namespace OnlineFlightBooking.Controllers
         // GET: Home
         public ActionResult Main() //View has the Layout for the Master page
         {
-            
             return View();
         }
         public ActionResult Search()
         {
-
             IEnumerable<Flight> flights = flightBL.DisplayFlight();
             List<FlightModel> flightModels = new List<FlightModel>();
             foreach (var flight in flights)
