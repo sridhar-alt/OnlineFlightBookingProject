@@ -49,8 +49,8 @@
             <td>@flight.FlightName</td>
             <td>@flight.FromLocation</td>
             <td>@flight.ToLocation</td>
-            <td>@flight.Date</td>
-            <td>@flight.ArrivalTime</td>
+            <td>@flight.Date.ToLongDateString()</td>
+            <td>@flight.ArrivalTime.ToLongTimeString()</td>
             <td>@flight.TotalSeat</td>
             <td>@Html.ActionLink("BookTicket", "BookTicket", "User", new { id = flight.FlightId }, null)</td>
         </tr>

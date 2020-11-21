@@ -22,7 +22,6 @@ namespace OnlineFlightbooking.DAL
         public DbSet<FlightTravelClass> FlightTravelClasses{get;set; }     //Table for the Flight Travel Class
         public DbSet<TravelClass> TravelClasses { get; set; }     //Table for the Travel Class
         public DbSet<TicketBook> TicketBooks { get; set; }
-        public DbSet<Account> Account { get; set; }
         public DbSet<Bank> Bank { get; set; }
     }
 }

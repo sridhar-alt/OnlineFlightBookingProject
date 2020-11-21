@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
     <Compile Include="Bank.cs" />
     <Compile Include="Flight.cs" />
     <Compile Include="FlightTravelClass.cs" />

@@ -25,6 +25,7 @@ namespace OnilneFlightBooking.Entity
         public DateTime ArrivalTime { get; set; }
         [Range(0,900)]
         public int TotalSeat { get; set; }
+        public int SeatBooked { get;set; }
     }
      
 }

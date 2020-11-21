@@ -99,6 +99,8 @@ namespace OnlineFlightBooking.Controllers
             TempData["TravelClass"] = flightBL.GetTravelClass();
             Flight flight = flightBL.GetFlightDetails(id);
             FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
+            flightModel.Date = Convert.ToDateTime(flightModel.Date.ToLongDateString());
+            flightModel.ArrivalTime = Convert.ToDateTime(flightModel.ArrivalTime.ToLongTimeString());
             TempData["FlightId"] = flight.FlightId;
             return View(flightModel);
         }

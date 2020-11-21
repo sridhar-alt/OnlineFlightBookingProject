@@ -156,7 +156,7 @@ namespace OnlineFlightbooking.DAL
         {
             using (UserContext userContext = new UserContext())
             {
-                return (from val in userContext.FlightEntity where flight.FromLocation == val.FromLocation && flight.ToLocation == val.ToLocation && flight.Date == val.Date select val).ToList();
+                return (from val in userContext.FlightEntity where flight.FromLocation == val.FromLocation && flight.ToLocation == val.ToLocation && flight.Date <= val.Date select val).ToList();
             }
         }
         public static TravelClass GetTravelClassName(int id)

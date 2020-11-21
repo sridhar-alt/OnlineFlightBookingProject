@@ -67,7 +67,7 @@ namespace OnlineFlightbooking.DAL
             {
                 using (UserContext userContext = new UserContext())
                 {
-                    User userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile).Where(model => model.Password == user.Password).SingleOrDefault();
+                    User userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile && model.Password == user.Password).FirstOrDefault();
                     if (userDb != null)
                     {
                         return userDb.Role;             //if the password and the userid present return the role of the user.
