@@ -15,6 +15,7 @@ namespace OnlineFlightBooking.App_Start
                 config.CreateMap<FlightTravelClassModel, FlightTravelClass>();
                 config.CreateMap<SearchFlight, Flight>();
                 config.CreateMap<TicketBookModel,TicketBook>();
+                config.CreateMap<Booking, TicketBook>();
             });
             //config.CreateMap<UserEntityModel, User>().ForMember(dest => dest.Role, opt => opt.MapFrom(src=>MemberRole.User));
         }

@@ -126,7 +126,9 @@ namespace OnlineFlightBooking.Controllers
                 TempData["classname"] = travelClass.ClassName;
                 TicketBook ticket = AutoMapper.Mapper.Map<TicketBookModel, TicketBook>(ticketBookModel);
                 flightBL.AddTicketBook(ticket);
-                return View(ticketBookModel);
+                TicketBook ticketGet = flightBL.GetTicket(ticket);
+                TicketBookModel ticketModel = AutoMapper.Mapper.Map<TicketBook,TicketBookModel>(ticketGet);
+                return View(ticketModel);
             }
             TempData["Flight Name"] = flight.FlightName;
             TempData["classname"] = travelClass.ClassName;
@@ -142,10 +144,13 @@ namespace OnlineFlightBooking.Controllers
        public ActionResult IncPassenger(int id)
         {
             TicketBook ticketBook = flightBL.GetBook(id);
-            FlightTravelClass flightTravelClass = flightBL.GetFlightTravelClass(ticketBook.FlightId,ticketBook.ClassId);
-            ticketBook.TotalPassenger = ticketBook.TotalPassenger + 1;
-            ticketBook.TotalCost = flightTravelClass.SeatCost * ticketBook.TotalPassenger;
-            flightBL.UpdateTicketBook(ticketBook);
+            FlightTravelClass flightTravelClass = flightBL.GetFlightTravelClass(ticketBook.FlightId, ticketBook.ClassId);
+            if (flightTravelClass.SeatCount>ticketBook.TotalPassenger)
+            {
+                ticketBook.TotalPassenger = ticketBook.TotalPassenger + 1;
+                ticketBook.TotalCost = flightTravelClass.SeatCost * ticketBook.TotalPassenger;
+                flightBL.UpdateTicketBook(ticketBook);
+            }
             return RedirectToAction("TicketCount",new { id=ticketBook.FlightTravelClassId});
         }
         [HttpGet]
@@ -184,14 +189,41 @@ namespace OnlineFlightBooking.Controllers
             TempData["FlightName"] = flight.FlightName;
             TempData["ClassName"] = travelClass.ClassName;
             TempData["UserName"] = user.Name;
-            TicketBookModel ticketBookModel = AutoMapper.Mapper.Map<TicketBook, TicketBookModel>(ticketBook);
-            return View(ticketBookModel);
+            Booking bookingModel = AutoMapper.Mapper.Map<TicketBook, Booking>(ticketBook);
+            return View(bookingModel);
         }
         [HttpPost]
-        public ActionResult Payment(TicketBookModel ticketBookModel)
+        public ActionResult Payment(Booking booking)
         {
-
-            return View(ticketBookModel.TicketId);
+            TicketBook ticket = flightBL.GetBook(booking.TicketId);
+            if (ModelState.IsValid)     //condition pass when all the model state validation is true
+            {
+                ticket.AccountNumber = booking.AccountNumber;
+                FlightTravelClass checkSeat = flightBL.GetFlightTravelClass(ticket.FlightId, ticket.ClassId);
+                if (checkSeat.SeatCount >= ticket.TotalPassenger)
+                {
+                    Bank bank = userBL.CheckAccount(ticket);
+                    if (bank != null)
+                    {
+                        checkSeat.SeatCount = checkSeat.SeatCount - ticket.TotalPassenger;
+                        checkSeat.SeatBooked =checkSeat.SeatBooked+ ticket.TotalPassenger;
+                        flightBL.EditClass(checkSeat);
+                        ticket.TicketStatus = 1;
+                        flightBL.BookTicket(ticket);
+                        ViewBag.Message = "Ticket Booked";
+                        return RedirectToAction("Search", "Home");
+                    }
+                }
+            }
+            TravelClass travelClass = flightBL.GetTravelClassName(ticket.ClassId);
+            Flight flight = flightBL.GetFlightDetails(ticket.FlightId);
+            User user = userBL.GetUser(ticket.Mobile);
+            TempData["FlightName"] = flight.FlightName;
+            TempData["ClassName"] = travelClass.ClassName;
+            TempData["UserName"] = user.Name;
+            ViewBag.message = "Enter the correct Account Number";
+            Booking bookingModel = AutoMapper.Mapper.Map<TicketBook, Booking>(ticket);
+            return View(bookingModel);
         }
     }
 }

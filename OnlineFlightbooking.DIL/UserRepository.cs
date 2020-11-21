@@ -53,7 +53,14 @@ namespace OnlineFlightbooking.DAL
                 return userContext.UserEntity.Where(model => model.Mobile == mobile).FirstOrDefault();
             }
         }
-
+        public static Bank CheckAccount(TicketBook ticket)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                DateTime date = DateTime.UtcNow.Date;
+                return userContext.Bank.Where(model => model.AccountNumber == ticket.AccountNumber && model.MobileNumber==ticket.Mobile && model.ValidDate>date).FirstOrDefault();
+            }
+        }
         public static string ValidateLogin(User user)       //Validate the login user based on the mobile number and the Password 
         {
             try

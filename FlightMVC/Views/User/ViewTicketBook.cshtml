@@ -14,28 +14,57 @@
         <th>Cost</th>
         <th>Change</th>
     </tr>
-    @foreach(OnilneFlightBooking.Entity.TicketBook ticket in Model)
+    @foreach (OnilneFlightBooking.Entity.TicketBook ticket in Model)
     {
-        <tr>
-            <td>@ticket.TicketId</td>
-            @foreach(OnilneFlightBooking.Entity.Flight flight in(List<OnilneFlightBooking.Entity.Flight>)TempData["flights"])
-            {
-                if(ticket.FlightId==flight.FlightId)
+        if (ticket.TicketStatus == 0)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                @foreach (OnilneFlightBooking.Entity.Flight flight in (List<OnilneFlightBooking.Entity.Flight>)TempData["flights"])
                 {
-                    <td>@flight.FlightName</td>
+                    if (ticket.FlightId == flight.FlightId)
+                    {
+                        <td>@flight.FlightName</td>
+                    }
                 }
-            }
-            @foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
-            {
-                if(ticket.ClassId==travelClass.ClassId)
+                @foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
                 {
-                    <td>@travelClass.ClassName</td>
+                    if (ticket.ClassId == travelClass.ClassId)
+                    {
+                        <td>@travelClass.ClassName</td>
+                    }
                 }
-            }
-            <td>@ticket.TotalPassenger</td>
-            <td>@ticket.TotalCost</td>
-            <td>@Html.ActionLink("TicketCount", "TicketCount", new { id = ticket.FlightTravelClassId }) | @Html.ActionLink("Delete", "DeleteTicketCount", new { id = ticket.TicketId })</td>
-        </tr>
+                <td>@ticket.TotalPassenger</td>
+                <td>@ticket.TotalCost</td>
+                <td>@Html.ActionLink("TicketCount", "TicketCount", new { id = ticket.FlightTravelClassId }) | @Html.ActionLink("Delete", "DeleteTicketCount", new { id = ticket.TicketId })</td>
+            </tr>
+        }
+    }
+    @foreach (OnilneFlightBooking.Entity.TicketBook ticket in Model)
+    {
+        if (ticket.TicketStatus == 1)
+        {
+            <tr>
+                <td>@ticket.TicketId</td>
+                @foreach (OnilneFlightBooking.Entity.Flight flight in (List<OnilneFlightBooking.Entity.Flight>)TempData["flights"])
+                {
+                    if (ticket.FlightId == flight.FlightId)
+                    {
+                        <td>@flight.FlightName</td>
+                    }
+                }
+                @foreach (OnilneFlightBooking.Entity.TravelClass travelClass in (List<OnilneFlightBooking.Entity.TravelClass>)TempData["TravelClass"])
+                {
+                    if (ticket.ClassId == travelClass.ClassId)
+                    {
+                        <td>@travelClass.ClassName</td>
+                    }
+                }
+                <td>@ticket.TotalPassenger</td>
+                <td>@ticket.TotalCost</td>
+                <td>Booked</td>
+            </tr>
+        }
     }
 </table>
 

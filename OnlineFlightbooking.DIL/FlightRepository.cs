@@ -1,4 +1,5 @@
 ﻿using OnilneFlightBooking.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -69,6 +70,7 @@ namespace OnlineFlightbooking.DAL
             using (UserContext userContext = new UserContext())
             {
                 var count = userContext.FlightTravelClasses.Where(p => p.FlightId == flightId).Sum(p => p.SeatCount);
+                count=count+ userContext.FlightTravelClasses.Where(p => p.FlightId == flightId).Sum(p => p.SeatBooked);
                 Flight flight = (userContext.FlightEntity.Find(flightId));
                 flight.TotalSeat = count;
                 userContext.Entry(flight).State = EntityState.Modified;
@@ -132,6 +134,24 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
+
+        public static void BookTicket(TicketBook ticket)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                userContext.Entry(ticket).State = EntityState.Modified;
+                userContext.SaveChanges();
+            }
+        }
+
+        public static TicketBook GetTicket(TicketBook ticket)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+               return userContext.TicketBooks.Where(model => model.FlightId == ticket.FlightId && model.ClassId == ticket.ClassId && model.Mobile == ticket.Mobile).FirstOrDefault();
+            }
+        }
+
         public static IEnumerable<Flight> SearchDisplayFlight(Flight flight)
         {
             using (UserContext userContext = new UserContext())

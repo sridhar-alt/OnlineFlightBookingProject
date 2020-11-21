@@ -9,6 +9,7 @@ namespace OnlineFlightBooking.BL
         void RegisterUser(User user);
         string ValidateLogin(User user);
         User GetUser(string mobile);
+        Bank CheckAccount(TicketBook ticket);
     }
     public class UserBL:IUserBL
     {
@@ -27,6 +28,10 @@ namespace OnlineFlightBooking.BL
         public User GetUser(string mobile)
         {
             return UserRepository.GetUser(mobile);
+        }
+        public Bank CheckAccount(TicketBook ticket)
+        {
+            return UserRepository.CheckAccount(ticket);
         }
     }
 }

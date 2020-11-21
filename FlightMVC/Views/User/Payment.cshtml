@@ -1,4 +1,4 @@
-﻿@model OnlineFlightBooking.Models.TicketBookModel
+﻿@model OnlineFlightBooking.Models.Booking
 @{
     ViewBag.Title = "Payment";
 }
@@ -7,50 +7,53 @@
 @using (Html.BeginForm("Payment", "User", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.TicketId)
-    @Html.HiddenFor(model=>model.AccountNumber)
-    <table id="normal">
-        <tr>
-            <td>User Name</td>
-            <td>
-                @TempData["UserName"].ToString()
-            </td>
-        </tr>
-        <tr>
-            <td>Ticket Id</td>
-            <td>
-                @Html.DisplayFor(Model => Model.TicketId)
-            </td>
-        </tr>
-        <tr>
-            <td>Flight Name</td>
-            <td>
-                @TempData["FlightName"].ToString()
-            </td>
-        </tr>
-        <tr>
-            <td>Class Name</td>
-            <td>@TempData["ClassName"].ToString()</td>
-        </tr>
-        <tr>
-            <td>No of person</td>
-            <td>@Html.DisplayFor(Model => Model.TotalPassenger)</td>
-        </tr>
-        <tr>
-            <td>Cost</td>
-            <td>@Html.DisplayFor(Model => Model.TotalCost)</td>
-        </tr>
-        <tr>
-            <td>
-                Account Number
-            </td>
-            <td>
-                @Html.TextBoxFor(Model=>Model.AccountNumber)
-            </td>
-        </tr>
-        <tr>
-            <td> <input type="submit" value="Book" class="buttonstyle" /></td>
-        </tr>
-    </table>
+<table id="normal">
+    <tr>
+        <td>User Name</td>
+        <td>
+            @TempData["UserName"].ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>Ticket Id</td>
+        <td>
+            @Html.DisplayFor(Model => Model.TicketId)
+        </td>
+    </tr>
+    <tr>
+        <td>Flight Name</td>
+        <td>
+            @TempData["FlightName"].ToString()
+        </td>
+    </tr>
+    <tr>
+        <td>Class Name</td>
+        <td>@TempData["ClassName"].ToString()</td>
+    </tr>
+    <tr>
+        <td>No of person</td>
+        <td>@Html.DisplayFor(Model => Model.TotalPassenger)</td>
+    </tr>
+    <tr>
+        <td>Cost</td>
+        <td>@Html.DisplayFor(Model => Model.TotalCost)</td>
+    </tr>
+    <tr>
+        <td>
+            Account Number
+        </td>
+        <td>
+            @Html.EditorFor(Model => Model.AccountNumber)
+            @ViewBag.message
+        </td>
+    </tr>
+    @Html.HiddenFor(model => model.AccountNumber)
+    @Html.HiddenFor(model=>model.TotalPassenger)
+    @Html.HiddenFor(model=>model.TotalCost)
+    <tr>
+        <td> <input type="submit" value="Book" class="buttonstyle" /></td>
+    </tr>
+</table>
     
 }
 

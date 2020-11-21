@@ -35,7 +35,8 @@
                 <table>
                     <tr>
                         <th>class</th>
-                        <th>No of Seats</th>
+                        <th>Available Seats</th>
+                        <th>Booked Seats</th>
                     </tr>
                     @foreach (OnilneFlightBooking.Entity.FlightTravelClass flightTravelClass in (List<OnilneFlightBooking.Entity.FlightTravelClass>)TempData["FlightTravelClass"])
                     {
@@ -49,6 +50,9 @@
                                     </td>
                                     <td>
                                         @flightTravelClass.SeatCount
+                                    </td>
+                                    <td>
+                                        @flightTravelClass.SeatBooked
                                     </td>
                                 }
                             </tr>

@@ -61,6 +61,22 @@
     <Compile Include="Migrations\202011170801065_updd.designer.cs">
       <DependentUpon>202011170801065_updd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011200547528_mobile.cs" />
+    <Compile Include="Migrations\202011200547528_mobile.designer.cs">
+      <DependentUpon>202011200547528_mobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011200549566_acc.cs" />
+    <Compile Include="Migrations\202011200549566_acc.designer.cs">
+      <DependentUpon>202011200549566_acc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011210458418_seatBook.cs" />
+    <Compile Include="Migrations\202011210458418_seatBook.designer.cs">
+      <DependentUpon>202011210458418_seatBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011210506141_seatBookclass.cs" />
+    <Compile Include="Migrations\202011210506141_seatBookclass.designer.cs">
+      <DependentUpon>202011210506141_seatBookclass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UserContext.cs" />
     <Compile Include="UserRepository.cs" />
@@ -79,6 +95,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202011170801065_updd.resx">
       <DependentUpon>202011170801065_updd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011200547528_mobile.resx">
+      <DependentUpon>202011200547528_mobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011200549566_acc.resx">
+      <DependentUpon>202011200549566_acc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011210458418_seatBook.resx">
+      <DependentUpon>202011210458418_seatBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011210506141_seatBookclass.resx">
+      <DependentUpon>202011210506141_seatBookclass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

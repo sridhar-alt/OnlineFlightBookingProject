@@ -27,6 +27,8 @@ namespace OnlineFlightBooking.BL
         void AddTicketBook(TicketBook ticketBook);
         void UpdateTicketBook(TicketBook ticketBook);
         void DeleteTicketCount(int id);
+        TicketBook GetTicket(TicketBook ticket);
+        void BookTicket(TicketBook ticket);
     }
     public class FlightBL:IFlightBL
     {
@@ -127,6 +129,14 @@ namespace OnlineFlightBooking.BL
         public void DeleteTicketCount(int id)
         {
             FlightRepository.DeleteTicketCount(id);
+        }
+        public TicketBook GetTicket(TicketBook ticket)
+        {
+            return FlightRepository.GetTicket(ticket);
+        }
+        public void BookTicket(TicketBook ticket)
+        {
+            FlightRepository.BookTicket(ticket);
         }
     }
 }

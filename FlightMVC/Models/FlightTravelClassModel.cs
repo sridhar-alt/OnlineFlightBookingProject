@@ -16,5 +16,6 @@ namespace OnlineFlightBooking.Models
         public int SeatCount { get; set; }
         [Required(ErrorMessage = "seat cost required")]
         public int SeatCost { get; set; }
+        public int SeatBooked { get; set; }
     }
 }

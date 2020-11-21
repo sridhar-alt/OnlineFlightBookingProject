@@ -18,5 +18,7 @@ namespace OnilneFlightBooking.Entity
         public  int SeatCount { get; set; }
         [Required]
         public int SeatCost { get; set; }
-    }
+        [Required]
+        public int SeatBooked { get; set; }
+}
 }

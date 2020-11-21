@@ -21,6 +21,8 @@ namespace OnlineFlightBooking.Models
         public int TotalPassenger { get; set; }
         public int TotalCost { get; set; }
         public int TicketStatus { get; set; }
+        [Required(ErrorMessage = "Account Number Required")]
         public int AccountNumber { get; set; }
+        
     }
 }
